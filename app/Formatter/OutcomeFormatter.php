@@ -1,0 +1,92 @@
+<?php
+
+namespace App\Formatter;
+
+class OutcomeFormatter
+{
+
+    function format($data, $project_id)
+    {
+
+        $formated_data = [
+            'project_id'                                          => $project_id,
+            'include'                                             => !empty($data['include']) && $data['include'] == 'Y' ? 1 : 0,
+            'exclude_comments'                                    => !empty($data['exclude_comments']) ? $data['exclude_comments'] : null,
+            'part_type'                                           => !empty($data['attendee_type']) ? $data['attendee_type'] : null,
+            'moc'                                                 => !empty($data['moc']) && $data['moc'] == 'Yes' ? 1 : 0,
+            'attendee_pre_count'                                  => !empty($data['attendee_pre_count']) ? $data['attendee_pre_count'] : null,
+            'attendee_post_count'                                 => !empty($data['attendee_post_count']) ? $data['attendee_post_count'] : null,
+            'attendee_eval_count'                                 => !empty($data['attendee_eval_count']) ? $data['attendee_eval_count'] : null,
+            'bias'                                                => !empty($data['bias']) ? $data['bias'] : null,
+            'bias_target_min'                                     => !empty($data['bias_target_min']) ? $data['bias_target_min'] : null,
+            'bias_target_met'                                     => !empty($data['bias_targetmet']) && $data['bias_targetmet'] == 'Yes' ? 1 : 0,
+            'c_measure'                                           => !empty($data['c_measure_default_y']) && $data['c_measure_default_y'] == 'Yes' ? 1 : 0,
+            'c_exclude'                                           => !empty($data['c_exclude_default_n']) && $data['c_exclude_default_n'] == 'Yes' ? 1 : 0,
+            'loif_rating'                                         => !empty($data['loifrating']) ? $data['loifrating'] : null,
+            'loif_target_min'                                     => !empty($data['loif_target_min']) ? $data['loif_target_min'] : null,
+            'loif_target_met'                                     => !empty($data['loif_targetmet']) && $data['loif_targetmet'] == 'Yes' ? 1 : 0,
+            'itc'                                                 => !empty($data['itc']) ? $data['itc'] : null,
+            'itc_target_min'                                      => !empty($data['itc_target_min']) ? $data['itc_target_min'] : null,
+            'itc_target_met'                                      => !empty($data['itc_targetmet']) && $data['itc_targetmet'] == 'Yes' ? 1 : 0,
+            'pc'                                                  => !empty($data['pc']) ? $data['pc'] : null,
+            'pc_target_min'                                       => !empty($data['pc_target_min']) ? $data['pc_target_min'] : null,
+            'pc_target_met'                                       => !empty($data['pc_targetmet']) && $data['pc_targetmet'] == 'Yes' ? 1 : 0,
+            'poc'                                                 => !empty($data['poc']) ? $data['poc'] : null,
+            'poc_target_min'                                      => !empty($data['poc_target_min']) ? $data['poc_target_min'] : null,
+            'poc_target_greater_than_95'                          => !empty($data['poc_target95']) && $data['poc_target95'] == 'Yes' ? 1 : 0,
+            'comments_on_competence'                              => !empty($data['comments_on_competence']) ? $data['comments_on_competence'] : null,
+            'p_measure'                                           => !empty($data['p_measure_defaultn']) && $data['p_measure_defaultn'] == 'Yes' ? 1 : 0,
+            'p_exclude'                                           => !empty($data['p_exclude_default_n']) && $data['p_exclude_default_n'] == 'Yes' ? 1 : 0,
+            'pif'                                                 => !empty($data['pif']) ? $data['pif'] : null,
+            'pif_target'                                          => !empty($data['pif_target']) ? $data['pif_target'] : null,
+            'pif_met'                                             => !empty($data['pif_met']) && $data['pif_met'] == 'Y' ? 1 : 0,
+            'comments_on_performance'                             => !empty($data['comments_on_performance']) ? $data['comments_on_performance'] : null,
+            'po_measure'                                          => !empty($data['po_measure_defaultn']) && $data['po_measure_defaultn'] == 'Yes' ? 1 : 0,
+            'po_exclude'                                          => !empty($data['po_exclude_defaultn']) && $data['po_exclude_defaultn'] == 'Yes' ? 1 : 0,
+            'poif'                                                => !empty($data['poif']) ? $data['poif'] : null,
+            'poif_target'                                         => !empty($data['poif_target']) ? $data['poif_target'] : null,
+            'poif_met'                                            => !empty($data['poif_met']) && $data['poif_met'] == 'Yes' ? 1 : 0,
+            'patient_outcomes_comments'                           => !empty($data['patient_outcomes_comments']) ? $data['patient_outcomes_comments'] : null,
+            'eb_content'                                          => !empty($data['eb_content']) ? $data['eb_content'] : null,
+            'eb_content_target_greater_than_95'                   => !empty($data['eb_content_target95']) && $data['eb_content_target95'] == 'Yes' ? 1 : 0,
+            'relevant_content'                                    => !empty($data['relevant_content']) ? $data['relevant_content'] : null,
+            'rel_content_target_greater_than_95'                  => !empty($data['rel_content_target95']) && $data['rel_content_target95'] == 'Yes' ? 1 : 0,
+            'format_useful'                                       => !empty($data['format_useful']) ? $data['format_useful'] : null,
+            'format_target_greater_than_95'                       => !empty($data['format_target95']) && $data['rel_content_target95'] == 'Yes' ? 1 : 0,
+            'faculty'                                             => !empty($data['faculty']) ? $data['faculty'] : null,
+            'faculty_target_greater_than_95'                      => !empty($data['faculty_target95']) && $data['faculty_target95'] == 'Yes' ? 1 : 0,
+            'interactive_learning'                                => !empty($data['interactive_learning']) ? $data['interactive_learning'] : null,
+            'int_learning_target_greater_than_95'                 => !empty($data['int_learning_target95']) && $data['int_learning_target95'] == 'Yes' ? 1 : 0,
+            'practice_strategies'                                 => !empty($data['practice_strategies']) ? $data['practice_strategies'] : null,
+            'ps_target_greater_than_95'                           => !empty($data['ps_target95']) && $data['ps_target95'] == 'Yes' ? 1 : 0,
+            'barrier_identified'                                  => !empty($data['barrier_identified']) && $data['barrier_identified'] == 'Yes' ? 1 : 0,
+            'strategies_incorporated'                             => !empty($data['strategies_incorporated']) && $data['strategies_incorporated'] == 'Yes' ? 1 : 0,
+            'pre_count'                                           => !empty($data['precount']) ? $data['precount'] : null,
+            'pre_avg'                                             => !empty($data['preavg']) ? $data['preavg'] : null,
+            'pre_stdev'                                           => !empty($data['prestdev']) ? $data['prestdev'] : null,
+            'post_count'                                          => !empty($data['postcount']) ? $data['postcount'] : null,
+            'post_avg'                                            => !empty($data['postavg']) ? $data['postavg'] : null,
+            'post_stdev'                                          => !empty($data['poststdev']) ? $data['poststdev'] : null,
+            'cohens_d'                                            => !empty($data['cohens_d']) ? $data['cohens_d'] : null,
+            'planned_impact'                                      => !empty($data['planned_impact']) ? $data['planned_impact'] : null,
+            'actual_impact'                                       => !empty($data['actual_impact']) ? $data['actual_impact'] : null,
+            'ccit'                                                => !empty($data['ccit']) ? $data['ccit'] : null,
+            'ccit_target'                                         => !empty($data['ccit_target']) ? $data['ccit_target'] : null,
+            'role_collaborative_team_change'                      => !empty($data['role_collaborative_team_change']) ? $data['role_collaborative_team_change'] : null,
+            'new_team_strategies'                                 => !empty($data['new_team_strategies']) ? $data['new_team_strategies'] : null,
+            'specific_action_factor'                              => !empty($data['specific_action_factor']) ? $data['specific_action_factor'] : null,
+            'saf_target'                                          => !empty($data['saf_target']) ? $data['saf_target'] : null,
+            'ed_reach_disease'                                    => !empty($data['ed_reach_disease']) ? $data['ed_reach_disease'] : null,
+            'ed_reach_per_year'                                   => !empty($data['ed_reach_per_year']) ? $data['ed_reach_per_year'] : null,
+            'understand_roles_resp'                               => !empty($data['understand_roles_resp']) ? $data['understand_roles_resp'] : null,
+            'apply_tools_techniques'                              => !empty($data['apply_tools_techniques']) ? $data['apply_tools_techniques'] : null,
+            'work_collaborative_team'                             => !empty($data['work_collaborative_team']) ? $data['work_collaborative_team'] : null,
+            'utilize_specialists_clinical_resources'              => !empty($data['utilize_specialists_clinical_resources']) ? $data['utilize_specialists_clinical_resources'] : null,
+            'other_choice_pctg'                                   => !empty($data['other_choice_pctg']) ? $data['other_choice_pctg'] : null,
+            'other_choice_text'                                   => !empty($data['other_choice_text']) ? $data['other_choice_text'] : null,
+
+        ];
+
+        return $formated_data;
+    }
+}
